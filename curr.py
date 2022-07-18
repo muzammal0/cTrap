@@ -202,9 +202,9 @@ if __name__=='__main__':
         #print("PSU Voltage:   {:6.1f} V".format(bus_voltage + shunt_voltage))
         #print("Shunt Voltage: {:9.1f} V".format(shunt_voltage))
         
-        print("Current:       {:9.3f} A".format(current/1000))
-        print("Volts:         {:6.1f} V".format(bus_voltage-1))
-        print("watt: 	      {:6.1f} W".format((bus_voltage-1)*(current/1000)))
+        print("Current:       {:9.3f} Ampere".format(current/1000))
+        print("Volts:         {:6.1f} Volts".format(bus_voltage-1))
+        print("watt: 	      {:6.1f} Watts".format((bus_voltage-1)*(current/1000)))
         print("")
         
         time.sleep(2)

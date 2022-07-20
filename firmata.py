@@ -3,7 +3,7 @@ import pyfirmata
 import time
 if __name__ == '__main__':
     # Initiate communication with Arduino
-    board = pyfirmata.Arduino('YOUR_PORT_HERE')
+    board = pyfirmata.Arduino('/dev/ttyUSB6')
     print("Communication Successfully started")
     while True:
         board.digital[13].write(1)

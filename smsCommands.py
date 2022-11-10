@@ -12,10 +12,12 @@ class SmsClass:
         self.state_machine.ReadConfig()
         self.state_machine.Init()
         self.status = self.state_machine.GetSMSStatus()
-        self.remain = self.status["SIMUsed"] + self.status["PhoneUsed"] + self.status["TemplatesUsed"]  #
-        self.command = "none"
-        self.dir_path = '/home/n6/camera_trap/data_root/done'
+        self.remain = self.status["SIMUsed"] + self.status["PhoneUsed"] + self.status["TemplatesUsed"]
         self.user = os.getlogin()
+        print(self.user)
+        self.command = "none"
+        self.dir_path = '/home/'+self.user+'/camera_trap/data_root/done'
+
 
 
     def run(self):

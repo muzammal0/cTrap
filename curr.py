@@ -57,10 +57,10 @@ class Mode:
 
 
 class INA219:
-    user = os.getlogin()
+    user = os.path.expanduser('~')
     print(user)
     i2c_bus_addr = 1
-    if user == str('n6'):
+    if user == str('/home/n6'):
         i2c_bus_addr = 0
 
     def __init__(self, i2c_bus=i2c_bus_addr, addr=0x41):

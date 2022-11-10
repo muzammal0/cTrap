@@ -53,9 +53,7 @@ def get_timestamp(arg):
 
 						
 def detect_capture():
-
-		 
-		user = os.getlogin()
+		user = os.path.expanduser('~')
 		print(user)
 		cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=0), cv2.CAP_GSTREAMER)	
 		if cap.isOpened():
@@ -67,8 +65,8 @@ def detect_capture():
 			
 		
 
-			if not os.path.exists('/home/'+str(user)+'/images'):
-				os.makedirs('/home/'+str(user)+'/images')
+			if not os.path.exists(str(user)+'/images'):
+				os.makedirs(str(user)+'/images')
 
 							
 			print("Starting capture")
@@ -81,7 +79,7 @@ def detect_capture():
 			while n < 3:
 				ret_val, img = cap.read()
 				mili = str(current_milli_time())
-				loc = '/home/'+str(user)+'/images' + mili + '.jpg'
+				loc = str(user)+'/images' + mili + '.jpg'
 				cv2.imwrite(loc , img)
 				
 				n=n+1

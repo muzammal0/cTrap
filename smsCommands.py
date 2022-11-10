@@ -1,6 +1,7 @@
 import gammu
 import time
 import os
+import pwd
 
 
 
@@ -13,10 +14,11 @@ class SmsClass:
         self.state_machine.Init()
         self.status = self.state_machine.GetSMSStatus()
         self.remain = self.status["SIMUsed"] + self.status["PhoneUsed"] + self.status["TemplatesUsed"]
-        self.user = os.getlogin()
+
+        self.user = os.path.expanduser('~')
         print(self.user)
         self.command = "none"
-        self.dir_path = '/home/'+self.user+'/camera_trap/data_root/done'
+        self.dir_path = self.user+'/camera_trap/data_root/done'
 
 
 

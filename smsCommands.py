@@ -1,7 +1,7 @@
 import gammu
 import time
 import os
-import pwd
+
 
 
 

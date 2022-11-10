@@ -18,7 +18,7 @@ class SmsClass:
         self.user = os.path.expanduser('~')
         print(self.user)
         self.command = "none"
-        self.dir_path = self.user+'/camera_trap/data_root/done'
+        self.dir_path = self.user+'/camera_trap/data_root/events'
 
 
 

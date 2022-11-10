@@ -64,6 +64,7 @@ class Mode:
 class INA219:
     user = os.getlogin()
     #print(user)
+    print(user)
     i2c_bus_addr = 1
     if user == str('n6'):
         i2c_bus_addr = 0

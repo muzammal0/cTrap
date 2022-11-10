@@ -5,7 +5,7 @@ number = "+923227044026"
 sms = 0
 while (True):
 
-    ser = serial.Serial("COM8", baudrate=115200, timeout=5)
+    ser = serial.Serial("/dev/ttyTHS1", baudrate=115200, timeout=5)
     msg = "sending box " + str(sms)
     ser.write(str.encode('AT\r'))
     print(ser.read(128))

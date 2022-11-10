@@ -3,6 +3,7 @@ import time
 import os
 
 
+
 class SmsClass:
 
     def __init__(self):
@@ -14,6 +15,7 @@ class SmsClass:
         self.remain = self.status["SIMUsed"] + self.status["PhoneUsed"] + self.status["TemplatesUsed"]  #
         self.command = "none"
         self.dir_path = '/home/n6/camera_trap/data_root/done'
+        self.user = os.getlogin()
 
 
     def run(self):
@@ -36,30 +38,21 @@ class SmsClass:
                     print("\n{}".format(m["Text"]))
                     self.command = (m["Text"])
 
-                if self.command.lower() == "reboot":
+                if self.command.lower() == "reboot cvgl":
                     print("reboot command received deleting sms")
                     self.sentreply("rebooting now")
                     self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
                     time.sleep(10)
                     os.system('sudo reboot')
 
-                if self.command.lower() == "2gon":
+                if self.command.lower() == "2g on cvgl":
                     print("2g On Command")
                     self.sentreply("Turning on 2g")
                     self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
-                    time.sleep(10)
-                    os.system('sudo pon')
-
-                if self.command.lower() == "2goff":
-                    print("2g Off Command")
-                    self.sentreply("Turning off 2g and rebooting")
-                    self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
-                    time.sleep(10)
-                    os.system('sudo poff')
                     time.sleep(5)
-                    os.system('sudo reboot')
+                    os.system('sudo python /home/'+ self.user +'/ctrap/2gon.py 1800')
 
-                if self.command.lower() == "stats":
+                if self.command.lower() == "stats cvgl":
                         self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
                         entries = os.listdir(self.dir_path)
                         self.sentreply("pending events " + str(len(entries)))

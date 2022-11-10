@@ -43,6 +43,22 @@ class SmsClass:
                     time.sleep(10)
                     os.system('sudo reboot')
 
+                if self.command.lower() == "2gon":
+                    print("2g On Command")
+                    self.sentreply("Turning on 2g")
+                    self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
+                    time.sleep(10)
+                    os.system('sudo pon')
+
+                if self.command.lower() == "2goff":
+                    print("2g Off Command")
+                    self.sentreply("Turning off 2g and rebooting")
+                    self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
+                    time.sleep(10)
+                    os.system('sudo poff')
+                    time.sleep(5)
+                    os.system('sudo reboot')
+
                 if self.command.lower() == "stats":
                         self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
                         entries = os.listdir(self.dir_path)

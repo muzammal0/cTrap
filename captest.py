@@ -8,7 +8,7 @@ from uuid import uuid4
 from PIL import Image
 import pathlib
 import glob
-
+import os
 	
 def gstreamer_pipeline(
 	capture_width=640,
@@ -55,7 +55,8 @@ def get_timestamp(arg):
 def detect_capture():
 
 		 
-		
+		user = os.getlogin()
+		print(user)
 		cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=0), cv2.CAP_GSTREAMER)	
 		if cap.isOpened():
 			
@@ -66,8 +67,8 @@ def detect_capture():
 			
 		
 
-			if not os.path.exists('/home/n3/images'):
-				os.makedirs('/home/n3/images')
+			if not os.path.exists('/home/'+str(user)+'/images'):
+				os.makedirs('/home/'+str(user)+'/images')
 
 							
 			print("Starting capture")
@@ -80,7 +81,7 @@ def detect_capture():
 			while n < 3:
 				ret_val, img = cap.read()
 				mili = str(current_milli_time())
-				loc = '/home/n3/images/' + mili + '.jpg'
+				loc = '/home/'+str(user)+'/images' + mili + '.jpg'
 				cv2.imwrite(loc , img)
 				
 				n=n+1

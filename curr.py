@@ -1,6 +1,6 @@
 import smbus
 import time
-
+import os
 # Config Register (R/W)
 _REG_CONFIG                 = 0x01
 # SHUNT VOLTAGE REGISTER (R)
@@ -57,7 +57,13 @@ class Mode:
 
 
 class INA219:
-    def __init__(self, i2c_bus=1, addr=0x41):
+    user = os.getlogin()
+    print(user)
+    i2c_bus_addr = 1
+    if user == str('n6'):
+        i2c_bus_addr = 0
+
+    def __init__(self, i2c_bus=i2c_bus_addr, addr=0x41):
         self.bus = smbus.SMBus(i2c_bus);
         self.addr = addr
 
@@ -191,6 +197,7 @@ class INA219:
 if __name__=='__main__':
  
     # Create an ADS1115 ADC (16-bit) instance.
+
     ina219 = INA219(addr=0x41)
     while True:
         bus_voltage = ina219.getBusVoltage_V()             # voltage on V- (load side)

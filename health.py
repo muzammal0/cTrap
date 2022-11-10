@@ -63,13 +63,14 @@ class Mode:
 
 class INA219:
     user = os.getlogin()
-    print(user)
+    #print(user)
     i2c_bus_addr = 1
     if user == str('n6'):
         i2c_bus_addr = 0
     def __init__(self, i2c_bus=i2c_bus_addr, addr=0x41):
         self.bus = smbus.SMBus(i2c_bus);
         self.addr = addr
+
 
         # Set chip to known config values to start
         self._cal_value = 0

@@ -3,7 +3,7 @@ import time
 from time import sleep
 import urllib2
 import os
-devID = "&field4=%s"
+
 baseURL = 'https://api.thingspeak.com/update?api_key=CRN8E0OVGUKR0N90'
 
 # Config Register (R/W)
@@ -63,7 +63,7 @@ class Mode:
 
 class INA219:
     user = os.path.expanduser('~')
-    print(user)
+    #print(user)
     i2c_bus_addr = 1
     if user == str('/home/n6'):
         i2c_bus_addr = 0
@@ -141,11 +141,34 @@ class INA219:
         if value > 32767:
             value -= 65535
         return value * self._power_lsb
+    def getID(self):
+        if self.user == str('/home/n1'):
+            devID = "&field1=%s"
+            return  devID
+        if self.user == str('/home/n2'):
+            devID = "&field2=%s"
+            return  devID
+        if self.user == str('/home/n3'):
+            devID = "&field3=%s"
+            return  devID
+        if self.user == str('/home/n4'):
+            devID = "&field4=%s"
+            return  devID
+        if self.user == str('/home/n5'):
+            devID = "&field5=%s"
+            return  devID
+        if self.user == str('/home/n6'):
+            devID = "&field6=%s"
+            return  devID
     
-if __name__=='__main__':
+if __name__=='__main__'():
  
     # Create an ADS1115 ADC (16-bit) instance.
+    ina219 = INA219()
     ina219 = INA219(addr=0x41)
+    devID = ina219.getID()
+
+
     while True:
         bus_voltage = ina219.getBusVoltage_V()             # voltage on V- (load side)
         shunt_voltage = ina219.getShuntVoltage_mV() / 100 # voltage between V+ and V- across the shunt

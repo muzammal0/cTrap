@@ -142,45 +142,42 @@ class INA219:
             value -= 65535
         return value * self._power_lsb
     def getID(self):
+        self.user = os.path.expanduser('~')
         if self.user == str('/home/n1'):
-            devID = "&field1=%s"
-            return  devID
+            ID = "&field1=%s"
+            return  ID
         if self.user == str('/home/n2'):
-            devID = "&field2=%s"
-            return  devID
+            ID = "&field2=%s"
+            return  ID
         if self.user == str('/home/n3'):
-            devID = "&field3=%s"
-            return  devID
+            ID = "&field3=%s"
+            return  ID
         if self.user == str('/home/n4'):
-            devID = "&field4=%s"
-            return  devID
+            ID = "&field4=%s"
+            return  ID
         if self.user == str('/home/n5'):
-            devID = "&field5=%s"
-            return  devID
+            ID = "&field5=%s"
+            return  ID
         if self.user == str('/home/n6'):
-            devID = "&field6=%s"
-            return  devID
+            ID = "&field6=%s"
+            return ID
     
-if __name__=='__main__'():
- 
+if __name__=='__main__':
     # Create an ADS1115 ADC (16-bit) instance.
     ina219 = INA219()
     ina219 = INA219(addr=0x41)
     devID = ina219.getID()
-
-
-    while True:
-        bus_voltage = ina219.getBusVoltage_V()             # voltage on V- (load side)
-        shunt_voltage = ina219.getShuntVoltage_mV() / 100 # voltage between V+ and V- across the shunt
-        current = ina219.getCurrent_mA()                   # current in mA
-        power = ina219.getPower_W()                        # power in W
-        # INA219 measure bus voltage on the load side. So PSU voltage = bus_voltage + shunt_voltage
-        #print("PSU Voltage:   {:6.1f} V".format(bus_voltage + shunt_voltage))
-        #print("Shunt Voltage: {:9.1f} V".format(shunt_voltage))
-        #print("Current:       {:9.3f} A".format(current/1000))
-        #print("Volts:         {:6.1f} V".format(bus_voltage-1))
-        #print("watt: 	      {:6.1f} W".format((bus_voltage-1)*(current/1000)))
-        #print("")
-        f = urllib2.urlopen(baseURL + devID % (bus_voltage-1))
-        f.close()
-        time.sleep(300)
+    bus_voltage = ina219.getBusVoltage_V()             # voltage on V- (load side)
+    shunt_voltage = ina219.getShuntVoltage_mV() / 100 # voltage between V+ and V- across the shunt
+    current = ina219.getCurrent_mA()                   # current in mA
+    power = ina219.getPower_W()                        # power in W
+    # INA219 measure bus voltage on the load side. So PSU voltage = bus_voltage + shunt_voltage
+    #print("PSU Voltage:   {:6.1f} V".format(bus_voltage + shunt_voltage))
+    #print("Shunt Voltage: {:9.1f} V".format(shunt_voltage))
+    #print("Current:       {:9.3f} A".format(current/1000))
+    #print("Volts:         {:6.1f} V".format(bus_voltage-1))
+    #print("watt: 	      {:6.1f} W".format((bus_voltage-1)*(current/1000)))
+    #print("")
+    f = urllib2.urlopen(baseURL + devID % (bus_voltage-1))
+    f.close()
+    print("stats sent")

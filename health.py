@@ -180,4 +180,5 @@ if __name__=='__main__':
     #print("")
     f = urllib2.urlopen(baseURL + devID % (bus_voltage-1))
     f.close()
+    time.sleep(3)
     print("stats sent")

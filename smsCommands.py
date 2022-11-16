@@ -39,7 +39,7 @@ class SmsClass:
                     print("{:<15}: {}".format("Number", m["Number"]))
                     print("{:<15}: {}".format("Date", str(m["DateTime"])))
                     print("{:<15}: {}".format("State", m["State"]))
-                    print("\n{}".format(m["Text"]))
+                    #print("\n{}".format(m["Text"]))  // dont print text it some time cause issues
                     self.command = (m["Text"])
 
                 if self.command.lower() == "reboot cvgl":

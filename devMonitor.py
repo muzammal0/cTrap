@@ -187,17 +187,16 @@ if __name__ == '__main__':
     power_check = 0
     if bus_voltage < 11:
         # stop all scripts
-        os.system("sudo supervisorcrl stop all")
+        os.system("sudo supervisorctl stop all")
         time.sleep(1)
         GPIO.output(usb_pin, GPIO.HIGH) # 4g off
-
         # send log msg
         power_check = 1
-    if bus_voltage > 12.5 and power_check == 1:
+    if bus_voltage > 12.5:
         # start scripts
-        GPIO.output(usb_pin, GPIO.LOW)  # 4g off
+        GPIO.output(usb_pin, GPIO.LOW)  # 4g on
         time.sleep(15)
-        os.system("sudo supervisorcrl start all")
+        os.system("sudo supervisorctl start all")
         # send log msg
-    time.sleep(30)
+    time.sleep(3)
     print("Device Monitoring Runing" + str())

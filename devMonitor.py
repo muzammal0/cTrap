@@ -194,8 +194,7 @@ if __name__ == '__main__':
         power_check = 1
     if bus_voltage > 12.5:
         # start scripts
-        GPIO.output(usb_pin, GPIO.LOW)  # 4g on
-        time.sleep(15)
+
         os.system("sudo supervisorctl start all")
         # send log msg
     time.sleep(3)

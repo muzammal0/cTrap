@@ -30,10 +30,6 @@ usb_pin = 36
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(usb_pin, GPIO.OUT, initial=GPIO.LOW)
 
-
-GPIO.setup(33, GPIO.OUT)  # Set GPIO pin 12 to output mode.
-pwm = GPIO.PWM(33, 100)   # Initialize PWM on pwmPin 100Hz frequency
-
 class BusVoltageRange:
     """Constants for ``bus_voltage_range``"""
     RANGE_16V = 0x00  # set bus voltage range to 16V
@@ -195,7 +191,7 @@ if __name__ == '__main__':
         print("script , 4g , infrared down")
         time.sleep(1)
         GPIO.output(usb_pin, GPIO.HIGH) # 4g off
-        pwm.start(0)
+
         # send log msg
 
     if bus_voltage > 12.5:

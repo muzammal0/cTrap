@@ -157,7 +157,7 @@ if __name__ == '__main__':
         print("Volts:         {:6.1f} Volts".format(bus_voltage - 1))
         print("watt: 	      {:6.1f} Watts".format((bus_voltage - 1) * (current / 1000)))
         print("")
-        f = open("logs.txt", "a+")
+        f = open("log.txt", "a+")
         f.write(current_time + " "+str(bus_voltage - 1)+"\n")
         f.close()
         time.sleep(1)

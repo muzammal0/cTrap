@@ -2,10 +2,10 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="1e1049e2-f4e8-44be-88b1-a06c99089247" name="hiktrap">
-        <fileTransfer accessType="SFTP" host="proxy60.rt3.io" port="39672" sshConfigId="78799e75-4b6f-4a80-b894-e806c14226fa" sshConfig="pi@proxy60.rt3.io:39672 password">
+      <webServer id="d00faf3b-5eb3-45a9-8485-4107c1a9bc77" name="Field">
+        <fileTransfer accessType="SFTP" host="proxy61.rt3.io" port="34231" sshConfigId="12c136e5-0226-4107-a02e-0919a12ea86a" sshConfig="n5@proxy61.rt3.io:34231 password">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
         </fileTransfer>
       </webServer>

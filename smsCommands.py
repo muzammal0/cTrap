@@ -54,14 +54,14 @@ class SmsClass:
                     self.sentreply("Turning on 2g")
                     self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
                     time.sleep(5)
-                    os.system('sudo python' + self.user +'/ctrap/2gon.py 1800')
+                    os.system('sudo python ' + self.user +'/ctrap/2gon.py 1800')
 
                 if self.command.lower() == "4g on cvgl":
                     print("4g On Command")
                     self.sentreply("Turning on 4g")
                     self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
                     time.sleep(5)
-                    os.system('sudo python' + self.user +'/ctrap/4gstart.py')
+                    os.system('sudo python ' + self.user +'/ctrap/4gstart.py')
 
                 if self.command.lower() == "stats cvgl":
                         self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)

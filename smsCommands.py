@@ -63,6 +63,13 @@ class SmsClass:
                     time.sleep(5)
                     os.system('sudo python ' + self.user +'/ctrap/4gstart.py')
 
+                if self.command.lower() == "4g off cvgl":
+                    print("4g Off Command")
+                    self.sentreply("Turning off 4g")
+                    self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
+                    time.sleep(5)
+                    os.system('sudo python ' + self.user +'/ctrap/4goff.py')
+
                 if self.command.lower() == "stats cvgl":
                         self.state_machine.DeleteSMS(Location=sms[0]["Location"], Folder=0)
                         entries = os.listdir(self.dir_path)
